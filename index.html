@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TIMER</title>
+
+        <!-- The StyleSheet Begins Here  -->
+
+        <style>
+            body {
+                background: repeating-linear-gradient(123deg, rgb(13, 13, 82), rgb(74, 13, 74));
+                min-height: min-content;
+                max-height: max-content;
+                /* background: repeating-linear-gradient(); */
+            }
+
+            .container {
+                border: solid 1px white;
+                box-shadow: 2px;
+                border-radius: 20px;
+                margin: 230px auto auto;
+                height: 250px;
+                width: auto;
+                padding: 10px 10px;
+                max-width: 400px;
+                background: linear-gradient(130deg, rgb(3, 3, 3), rgb(15, 15, 61), rgb(8, 8, 74), rgb(6, 6, 72), black);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                backface-visibility: 4px;
+            }
+
+            .big {
+                font-family: 'Segoe UI', sans-serif;
+                color: white;
+                font-size: 70px;
+            }
+
+            .lower {
+                margin-top: 20px;
+            }
+
+            .btn {
+                width: 100px;
+                border-radius: 18px;
+                height: 50px;
+            }
+        </style>
+
+
+        <!-- The StyleSheet Ends Here  -->
+
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="high">
+                <span id="hr" class="big">00</span>
+                <span class="big">&nbsp;:&nbsp;</span>
+                <span id="min" class="big">00</span>
+                <span class="big">&nbsp;:&nbsp;</span>
+                <span id="sec" class="big">00</span>
+                <!-- <span class="timez">AM</span> -->
+            </div>
+            <div class="lower">
+                <button class='btn' id="start">START</button>
+                <button class='btn' id="reset">RESET</button>
+            </div>
+        </div>
+
+        <!-- The Script Begins Here  -->
+        <script>
+
+            let hr = document.getElementById('hr');
+            let min = document.getElementById('min');
+            let sec = document.getElementById('sec');
+            let start = document.getElementById('start');
+            let reset = document.getElementById('reset');
+            let myinterval;
+            let flag = false;
+
+            // sec.innerText = 55;
+            // min.innerText = 59;
+
+            start.addEventListener('click', () => {
+                if (flag == true) {
+                    clearInterval(myinterval);
+                    start.innerText = 'START';
+                    flag = !flag;
+                }
+                else {
+                    flag = !flag;
+                    start.innerText = 'STOP';
+                    myinterval = setInterval(() => {
+                        if (sec.innerText < 59) {
+                            sec.innerText++;
+                        }
+                        else {
+                            sec.innerText = 0;
+                            if (min.innerText < 59) {
+                                min.innerText++;
+                            }
+                            else {
+                                min.innerText = 0;
+                                hr.innerText++;
+
+                            }
+                        }
+                    }, 1000);
+                }
+            })
+
+            reset.addEventListener('click', () => {
+                sec.innerText = 0;
+                min.innerText = 0;
+                hr.innerText = 0;
+
+
+            })
+
+
+
+
+
+
+
+            // setInterval(() => {
+            //     if (sec.innerText < 59) {
+            //         sec.innerText++;
+            //     }
+            //     else {
+            //         if (min.innerText < 59) {
+            //             min.innerText++;
+            //             sec.innerText = 0;
+            //         }
+            //         else {
+            //             min.innerText = 0;
+            //             hr.innerText++;
+
+            //         }
+
+            //     }
+
+            // }, 100);
+
+        </script>
+        <!-- The Script Begins Here  -->
+    </body>
+
+</html>
